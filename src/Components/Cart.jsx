@@ -1,4 +1,7 @@
 //Responsável por apresentar os produtos inseridos no carrinho e o valor total da compra.
+//Para a soma do total ficar no valor correto, usei a referência deste link: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+
+
 import "./Style/cart.css"
 
 function Cart({currentSale, setCurrentSale}){
