@@ -2,8 +2,10 @@
 //nome, categoria e preço, além de um button para adicionar ao carrinho;
 
 import "./Style/product.css"
+import { ToastContainer, toast } from 'react-toastify'
 
 function Product({handleClick, product}){
+
     
     return (
         <div className="DivHamburger">
@@ -16,10 +18,10 @@ function Product({handleClick, product}){
             <div className="DivDescription">
                 <h2 className="ProductName">{product.name}</h2>
                 <h3 className="ProductCategory">{product.category}</h3>
-                <p className="ProductPrice">R$ {product.price}</p>
+                <p className="ProductPrice">R$ {product.price.toFixed(2)}</p>
 
-                <button className="ProductBtn" 
-                onClick={() => handleClick(product.id)}>Add ao Carrinho</button>
+                <button className="ProductBtn"
+                onClick= {() => handleClick(product.id)}>Add ao Carrinho</button>
             </div>
 
         </div>

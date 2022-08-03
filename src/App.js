@@ -5,6 +5,9 @@ import ProductsList from "./Components/ProductsList";
 
 import "./Components/Style/App.css"
 
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 function App() {
 
 //name, category, price, img
@@ -42,14 +45,24 @@ function App() {
       )
     )
   }
-  
   //junção dos itens no carrinho com os novos add
-  const handleClick = (productId) => {
-    const novoProd = products.find((item) => item.id === productId);
 
-    !currentSale.some((item) => item.id === novoProd.id) &&
-      setCurrentSale([...currentSale, novoProd]);
+      const handleClick = (productId) => {
+        if(currentSale.some(products => products.id === productId)){
+          toast.error("Você não pode add este item duas vezes!")
+          console.log("entrei no")
+        }
+        else {
+        const novoProd = products.find((item) => item.id === productId);
+      
+         
+        !currentSale.some((item) => item.id === novoProd.id) &&
+          setCurrentSale([...currentSale, novoProd]);
+          console.log("entrei no else")
+      };
+
   };
+
 
   //função para soma do meu total do carrinho
   const total = () => {
@@ -86,8 +99,8 @@ function App() {
       </header>
 
       <div className="ProductsContainer">
+      <ToastContainer autoClose={3000} position="top-center" type="error"/>
       <ProductsList products={products} filteredProducts={filteredProducts} userInput={userInput} handleClick={handleClick}/>
-     
       <Cart currentSale={currentSale} cartTotal={cartTotal} setCurrentSale={setCurrentSale} total={total} handleClick={handleClick}/>
       </div>
     </div>
